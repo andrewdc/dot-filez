@@ -1,0 +1,28 @@
+[push]
+	default = current
+
+[alias]
+  tree = log --graph --decorate --oneline
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  type = cat-file -t
+  dump = cat-file -p
+  findcommit = !git log --oneline --date=short --pretty=format:"%Cred%<(10)%h%Creset%Cgreen%<(20)%an%Creset%Cblue%<(15)%ad%Creset%<(20)%s" --source --all -S
+  fc = !git log --oneline --date=short --pretty=format:"%Cred%<(10)%h%Creset%Cgreen%<(20)%an%Creset%Cblue%<(15)%ad%Creset%<(20)%s" --source --all -S
+
+[core]
+	excludesfile = /Users/andrewcolclough/.gitignore_global
+	editor = vim
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
